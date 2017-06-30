@@ -1,54 +1,34 @@
 //提前声明
-bool Increment(char* arr, int size);
 void PrintNumber(char* arr, int size);
+void _Print1ToMax(char* arr, int size, int index);
 void Print1ToMax(int n)
 {
 	if (n <= 0)
 		return;
 	char* arr = new char[n + 1];
-	memset(arr, '0', n);//初始化
 	arr[n] = '\0';
-	while (!Increment(arr, n))
+	//将一个大问题划分成多个子问题
+	for (int idx = 0; idx < 10; ++idx)
 	{
-		PrintNumber(arr, n);
+		arr[0] = idx + '0';//将最高位分为0-9个小部分
+		_Print1ToMax(arr, n, 0);
 	}
-	delete[] arr;
 }
-//递增
-bool Increment(char* arr, int size)
+void _Print1ToMax(char* arr, int size, int index)
 {
-	bool isOverflow = false;//最高位进位标志位
-	int TakeOver = 0;//进位标志位
-	for (int idx = size - 1; idx >= 0 ; --idx)
+	//最低位时，进行打印
+	if (index == size - 1)
 	{
-		int nSum = arr[idx] - '0' + TakeOver;
-		//最低位递增
-		if (idx == size - 1)
-			nSum++;
-		//如果nSum>=10，可能会产生进位
-		if (nSum >= 10)
-		{
-			//最高位不进位
-			if (idx == 0)
-				isOverflow = true;
-			//不是最高位，则进位
-			else
-			{
-				nSum -= 10;
-				TakeOver = 1;//进位标志位置1
-				arr[idx] = nSum + '0';
-			}
-		}
-		//未产生进位，直接存取
-		else
-		{
-			arr[idx] = nSum + '0';
-			break;
-		}
+		PrintNumber(arr, size);
+		return;
 	}
-	return isOverflow;
+	//对0-9之间的数字进行全排列
+	for (int i = 0; i < 10; ++i)
+	{
+		arr[index + 1] = i + '0';
+		_Print1ToMax(arr, size, index + 1);//一直递归到最低位
+	}
 }
-//打印
 void PrintNumber(char* arr, int size)
 {
 	bool flag = true;
@@ -61,4 +41,5 @@ void PrintNumber(char* arr, int size)
 		if (!flag)
 			cout << arr[idx] << " ";
 	}
+	cout << "\t";
 }
