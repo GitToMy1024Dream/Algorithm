@@ -1,6 +1,6 @@
+//é€’å½’
 #include <iostream>
 using namespace std;
-//µÝ¹é ¹é²¢ÅÅÐò
 void Merge(int* arr, int* tmp, int left, int mid, int right)
 {
 	int begin_1 = left;
