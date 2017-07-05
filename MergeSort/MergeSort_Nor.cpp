@@ -1,4 +1,4 @@
-//·Çµİ¹é ¹é²¢ÅÅĞò
+//éé€’å½’
 
 void Merge(int* arr, int left, int mid, int right, int* tmp)
 {
