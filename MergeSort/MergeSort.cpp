@@ -1,4 +1,4 @@
-//递归
+﻿//递归版本
 #include <iostream>
 using namespace std;
 void Merge(int* arr, int* tmp, int left, int mid, int right)

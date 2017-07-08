@@ -1,4 +1,4 @@
-//非递归
+﻿//非递归版本
 void Merge(int* arr, int left, int mid, int right, int* tmp)
 {
 	int begin_1 = left;
